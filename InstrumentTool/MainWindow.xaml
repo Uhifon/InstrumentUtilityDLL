@@ -7,21 +7,9 @@
         xmlns:local="clr-namespace:InstrumentTool"
         mc:Ignorable="d"
         Title="仪表控制工具" Height="600" Width="800" WindowStartupLocation="CenterScreen" BorderThickness="1" BorderBrush="Black" WindowStyle="None" ResizeMode="NoResize">
-    <StackPanel>
-      
-        <Grid Grid.Row="1" Grid.Column="1">
-            <TabControl>
-                <TabControl.ItemContainerStyle>
-                    <Style>
-                        <Setter Property="UIElement.Visibility" Value="Collapsed"/>
-                    </Style>
-                </TabControl.ItemContainerStyle>
-                <TabItem Header="频谱仪"/>
-                <TabItem Header="信号源"/>
-                <TabItem Header="功率计"/>
-                <TabItem Header="综测仪"/>
-
-            </TabControl>
+    
+        <Grid  >
+ 
             <Button x:Name="btnConnect" Content="连  接" HorizontalAlignment="Left" Margin="279,52,0,0" VerticalAlignment="Top" Width="119" Height="52" Click="btnConnect_Click" />
             <Label Content="GPIB板卡：" HorizontalAlignment="Left" Margin="54,49,0,0" VerticalAlignment="Top" Width="82"/>
             <ComboBox x:Name="cmbGPIBBoard" HorizontalAlignment="Left" Margin="136,49,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
@@ -39,7 +27,6 @@
             <Label Content="接收信息：" HorizontalAlignment="Left" Margin="54,243,0,0" VerticalAlignment="Top" Width="82"/>
 
         </Grid>
-    
-    </StackPanel>
+     
 
 </Window>
