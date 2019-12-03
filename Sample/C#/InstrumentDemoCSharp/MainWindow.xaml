@@ -1,0 +1,33 @@
+﻿<Window x:Class="InstrumentDemoCsharp.MainWindow"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InstrumentDemoCsharp"
+        mc:Ignorable="d"
+        Title="仪表控制工具" Height="600" Width="800" WindowStartupLocation="CenterScreen" BorderThickness="1" BorderBrush="Black" WindowStyle="None" ResizeMode="NoResize">
+    
+        <Grid  >
+ 
+            <Button x:Name="btnConnect" Content="连  接" HorizontalAlignment="Left" Margin="279,52,0,0" VerticalAlignment="Top" Width="119" Height="52" Click="btnConnect_Click" />
+            <Label Content="GPIB板卡：" HorizontalAlignment="Left" Margin="54,49,0,0" VerticalAlignment="Top" Width="82"/>
+            <ComboBox x:Name="cmbGPIBBoard" HorizontalAlignment="Left" Margin="136,49,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
+                <ComboBoxItem Content="GPIB0"/>
+                <ComboBoxItem Content="GPIB1"/>
+                <ComboBoxItem Content="GPIB2"/>
+            </ComboBox>
+            <Label  Content="GPIB地址：" HorizontalAlignment="Left" Margin="54,81,0,0" VerticalAlignment="Top" Width="82"/>
+            <TextBox x:Name="tbGPIBID"  HorizontalAlignment="Left" Height="23" Margin="136,81,0,0" TextWrapping="Wrap" Text="18" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="tbSend" HorizontalAlignment="Left" Height="68" Margin="54,151,0,0" TextWrapping="Wrap" Text="*RST" VerticalAlignment="Top" Width="291"/>
+            <TextBox x:Name="tbRecv" HorizontalAlignment="Left" IsReadOnly="True" Background="WhiteSmoke" Height="68" Margin="54,274,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="291"/>
+            <Button x:Name="btnSend" Content="发送" HorizontalAlignment="Left" Margin="365,158,0,0" VerticalAlignment="Top" Width="84" Height="28" Click="btnSend_Click"/>
+            <Button x:Name="btnSendAndRecv" Content="发送并接收" HorizontalAlignment="Left" Margin="365,191,0,0" VerticalAlignment="Top" Width="84" Height="28" Click="btnSendAndRecv_Click"/>
+            <Label Content="发送指令：" HorizontalAlignment="Left" Margin="54,120,0,0" VerticalAlignment="Top" Width="82"/>
+            <Label Content="接收信息：" HorizontalAlignment="Left" Margin="54,243,0,0" VerticalAlignment="Top" Width="82"/>
+        <Button x:Name="btnFindResouce" Content="寻找资源" HorizontalAlignment="Left" Margin="420,52,0,0" VerticalAlignment="Top" Width="119" Height="52" Click="btnFindResouce_Click" />
+
+    </Grid>
+     
+
+</Window>
