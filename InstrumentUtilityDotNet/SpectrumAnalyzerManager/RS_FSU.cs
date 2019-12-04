@@ -47,7 +47,7 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
 
 
         /// <summary>
-        /// 获取中心频率  
+        /// 获取中心频率 
         /// </summary>
         /// <returns></returns>
         public override double GetCenterFreq()
