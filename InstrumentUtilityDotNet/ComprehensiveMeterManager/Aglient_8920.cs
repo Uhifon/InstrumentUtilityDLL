@@ -6,30 +6,13 @@ using System.Threading.Tasks;
 
 namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
 {
-    public class Aglient_8920 :InstrumentManager,IComprehensiveMeter
+    public class Aglient_8920 :IComprehensiveMeter
     {
-        /// <summary>
-        /// 连接设备
-        /// </summary>
-        /// <param name="address"></param>
-        /// <returns></returns>
-        public bool  Connect(string address)
-        {
-            return  base.InitiateIO488(address);
-        }
-
-        /// <summary>
-        /// 断开连接
-        /// </summary>
-        public void  DisConnect()
-        {
-            base.Close();
-        }
-
+ 
         /// <summary>
         /// 获取设备ID号
         /// </summary>
-        public string GetID()
+        public override string GetID()
         {
             string sendMsg = "*IDN?";
             try
@@ -38,33 +21,15 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return null;
+                throw(ex);
             }
         }
-        /// <summary>
-        ///  Write
-        /// </summary>
-        /// <param name="command"></param>
-        public void WriteCommand(string command)
-        {
-            base.WriteString(command);
-        }
 
-        /// <summary>
-        ///  WriteAndRead
-        /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
-        public string WriteAndReadCommand(string command)
-        {
-            return base.WriteAndReadString(command);
-        }
         /// <summary>
         /// 初始化仪表参数
         /// </summary>
         /// <returns></returns>
-        public bool Reset()
+        public override bool Reset()
         {
             string sendMsg = "*RST";
             try
@@ -74,8 +39,7 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                throw (ex);
             }
         }
         /// <summary>
@@ -84,7 +48,7 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
         /// <param name="unit">频率单位</param>
         /// <param name="value">频率</param>
         /// <returns></returns>
-        public   bool SetCenterFreq(FrequencyUnit unit, double value)
+        public override bool SetCenterFreq(FrequencyUnit unit, double value)
         {
 
             string sendMsg = "RFG: FREQ ";
@@ -110,8 +74,7 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                throw (ex);
             }
         }
 
@@ -120,7 +83,7 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
         /// </summary>
         /// <param name="value">参考电平 单位dbm</param>
         /// <returns></returns>
-        public   bool SetRefLevel(double value)
+        public override bool SetRefLevel(double value)
         {
             string sendMsg = "RFG:AMPL " + value + "DBM;";
             try
@@ -130,8 +93,7 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                throw (ex);
             }
         }
 
@@ -141,7 +103,7 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
         /// 获取中心频率
         /// </summary>
         /// <returns></returns>
-        public   double GetCenterFreq()
+        public override double GetCenterFreq()
         {
             string sendMsg = "MEAS: AFR: FREQ ?;";
             try
@@ -151,8 +113,7 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return -1;
+                throw (ex);
             }
         }
 
@@ -162,7 +123,7 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
         /// </summary>
         /// <param name="onOff"> 设置解调开关</param>
         /// <returns></returns>
-        public   bool SetAfgState(bool onOff)
+        public override bool SetAfgState(bool onOff)
         {
             string sendMsg = null;
             if (!onOff)
@@ -176,8 +137,7 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                throw (ex);
             }
         }
 

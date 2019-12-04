@@ -9,47 +9,13 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
     /// <summary>
     ///  E440系列 Old
     /// </summary>
-    public class Agilent_E4400:InstrumentManager , ISignalSource
+    public class Agilent_E4400: ISignalSource
     {
-        /// <summary>
-        /// 连接设备
-        /// </summary>
-        /// <param name="address"></param>
-        /// <returns></returns>
-        public bool Connect(string address)
-        {
-            return base.InitiateIO488(address);
-        }
-
-        /// <summary>
-        /// 断开连接
-        /// </summary>
-        public void DisConnect()
-        {
-            base.Close();
-        }
-        /// <summary>
-        ///  Write
-        /// </summary>
-        /// <param name="command"></param>
-        public void WriteCommand(string command)
-        {
-            base.WriteString(command);
-        }
-
-        /// <summary>
-        ///  WriteAndRead
-        /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
-        public string WriteAndReadCommand(string command)
-        {
-            return base.WriteAndReadString(command);
-        }
+  
         /// <summary>
         /// 获取设备ID号
         /// </summary>
-        public string GetID()
+        public override string GetID()
         {
             string sendMsg = "ID?;";
             try
@@ -58,15 +24,14 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return null;
+                throw (ex);
             }
         }
         /// <summary>
         /// 初始化仪表参数
         /// </summary>
         /// <returns></returns>
-        public  bool Reset()
+        public override bool Reset()
         {
             string sendMsg = "IP;";
             try
@@ -76,15 +41,15 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;            }
+                throw (ex);
+            }
         }
         /// <summary>
         /// 信号源发射开关
         /// </summary>
         /// <param name="state">On:打开发射 Off：关闭发射</param>
         /// <returns></returns>
-        public  bool SetSignalSourceState(bool state)
+        public override bool SetSignalSourceState(bool state)
         {
             string sendMsg = string.Empty;
             if (state)
@@ -98,8 +63,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                throw (ex);
             }
 
         }
@@ -112,7 +76,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
         /// <param name="freq">频率</param>
         /// <param name="level">功率，单位DBM</param>
         /// <returns></returns>
-        public  bool SetFreqAndLevel(FrequencyUnit unit, double freq, double level)
+        public override bool SetFreqAndLevel(FrequencyUnit unit, double freq, double level)
         {
             string sendMsg = "*RST;FREQ:CW "+freq;
             switch (unit)
@@ -138,8 +102,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                throw (ex);
             }
         }
 
@@ -149,7 +112,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
         /// <param name="unit">频率单位</param>
         /// <param name="freq">频率</param>
         /// <returns></returns>
-        public  bool SetFreq(FrequencyUnit unit, double freq)
+        public override bool SetFreq(FrequencyUnit unit, double freq)
         {
 
             string sendMsg = "*RST;FREQ:CW "+freq;
@@ -175,8 +138,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                throw (ex);
             }
         }
 
@@ -185,7 +147,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
         /// </summary>
         /// <param name="level">功率</param>
         /// <returns></returns>
-        public  bool SetLevel(double level)
+        public override bool SetLevel(double level)
         {
 
             string sendMsg = "POW:LEV " + level + "DBM";
@@ -196,8 +158,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                throw (ex);
             }
         }
         /// <summary>
@@ -205,7 +166,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
         /// </summary>
         /// <param name="onOff"></param>
         /// <returns></returns>
-        public  bool SetPulse(bool state)
+        public override bool SetPulse(bool state)
         {
             string sendMsg = string.Empty;
             if (state)
@@ -219,8 +180,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                throw (ex);
             }
         }
         /// <summary>
@@ -228,7 +188,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
         /// </summary>
         /// <param name="width">信号带宽（8us-脉冲周期） 单位:us</param>
         /// <returns></returns>
-        public  bool SetPulseWidth(double width)
+        public override bool SetPulseWidth(double width)
         {
    
             string sendMsg = "PULM:INTernal:PWIDth " + width + "us";         //INTernal可去掉
@@ -239,8 +199,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                throw (ex);
             }
         }
 
@@ -250,7 +209,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
         /// </summary>
         /// <param name="period">周期(16us-30s) 单位:us</param>
         /// <returns></returns>
-        public  bool SetPulsePeriod(double period)
+        public override bool SetPulsePeriod(double period)
         {
           
             string sendMsg = "PULM:INTernal:PERiod " + period + "us";         //INTernal可去掉
@@ -261,8 +220,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                throw (ex);
             }
         }
     }

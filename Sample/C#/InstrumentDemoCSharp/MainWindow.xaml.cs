@@ -36,14 +36,20 @@ namespace InstrumentDemoCsharp
 
         private void btnConnect_Click(object sender, RoutedEventArgs e)
         {
-           
 
 
-            IComprehensiveMeter meter =   ComprehensiveMeter.GetInstance(InstrumentUtilityDotNet.ComprehensiveMeterType.Aglient_8920);
-           bool res = meter.Connect("TCPIP0::192.168.0.10::5000::SOCKET");
+            
+           IComprehensiveMeter meter =   ComprehensiveMeter.GetInstance(InstrumentUtilityDotNet.ComprehensiveMeterType.Aglient_8920);
+         //  bool res = meter.Connect("TCPIP0::192.168.0.10::5000::SOCKET");
 
-
-            meter.GetID();
+            try
+            {
+                meter.GetID();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             ISignalSource signalSource = SignalSource.GetInstance(InstrumentUtilityDotNet.SignalSourceType.RS_SMBV100A);
             signalSource.GetID();

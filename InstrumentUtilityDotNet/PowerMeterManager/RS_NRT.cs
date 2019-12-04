@@ -6,48 +6,13 @@ using System.Threading.Tasks;
 
 namespace InstrumentUtilityDotNet.PowerMeterManager
 {
-    public class RS_NRT : InstrumentManager, IPowerMeter
+    public class RS_NRT :  IPowerMeter
     {
-        /// <summary>
-        /// 连接设备
-        /// </summary>
-        /// <param name="address"></param>
-        /// <returns></returns>
-        public bool Connect(string address)
-        {
-            return base.InitiateIO488(address);
-        }
-
-        /// <summary>
-        /// 断开连接
-        /// </summary>
-        public void DisConnect()
-        {
-            base.Close();
-        }
-
-        /// <summary>
-        ///  Write
-        /// </summary>
-        /// <param name="command"></param>
-        public void WriteCommand(string command)
-        {
-            base.WriteString(command);
-        }
-
-        /// <summary>
-        ///  WriteAndRead
-        /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
-        public string WriteAndReadCommand(string command)
-        {
-            return base.WriteAndReadString(command);
-        }
+ 
         /// <summary>
         /// 获取设备ID号
         /// </summary>
-        public string GetID()
+        public override string GetID()
         {
             string sendMsg = "*IDN?";
             try
@@ -56,8 +21,7 @@ namespace InstrumentUtilityDotNet.PowerMeterManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return null;
+                throw (ex);
             }
         }
 
@@ -65,7 +29,7 @@ namespace InstrumentUtilityDotNet.PowerMeterManager
         /// 初始化仪表参数
         /// </summary>
         /// <returns></returns>
-        public bool Reset()
+        public override bool Reset()
         {
             string sendMsg = "IP;";
             try
@@ -75,8 +39,7 @@ namespace InstrumentUtilityDotNet.PowerMeterManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                throw (ex);
             }
         }
 
@@ -84,7 +47,7 @@ namespace InstrumentUtilityDotNet.PowerMeterManager
         /// 单位切换
         /// </summary>
         /// <param name="unit">DBM,W</param>
-        public bool PowerUnitChange(PowerUnit unit)
+        public override bool PowerUnitChange(PowerUnit unit)
         {
             string sendMsg = ":UNIT0:POW " + unit.ToString();
             try
@@ -94,8 +57,7 @@ namespace InstrumentUtilityDotNet.PowerMeterManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                throw (ex);
             }
         }
 
@@ -106,7 +68,7 @@ namespace InstrumentUtilityDotNet.PowerMeterManager
         /// <param name="avg">功率</param>
         /// <param name="swr">驻波比</param>
         /// <returns></returns>
-        public bool GetPower(int sensorNum, out double avg, out double swr)
+        public override bool GetPower(int sensorNum, out double avg, out double swr)
         {
             avg = 0;
             swr = 0;
@@ -123,8 +85,7 @@ namespace InstrumentUtilityDotNet.PowerMeterManager
             {
                 avg = 0;
                 swr = 0;
-                Console.WriteLine(ex.Message);
-                return false;
+                throw (ex);
             }
 
         }

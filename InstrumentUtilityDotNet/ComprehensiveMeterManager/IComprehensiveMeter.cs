@@ -5,43 +5,55 @@ using System.Text;
 
 namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
 {
-    public  interface IComprehensiveMeter
+    public abstract class IComprehensiveMeter: InstrumentManager
     {
         /// <summary>
         /// 连接仪表
         /// </summary>
         /// <param name="address"></param>
         /// <returns></returns>
-        bool Connect(string address);
+        public bool Connect(string address)
+        {
+            return base.InitiateIO488(address);
+        }
 
         /// <summary>
         /// 断开连接
         /// </summary>
-        void DisConnect();
+        public  void DisConnect()
+        {
+            base.Close();
+        }
 
         /// <summary>
         ///  Write
         /// </summary>
         /// <param name="command"></param>
-        void WriteCommand(string command);
+        public  void WriteCommand(string command)
+        {
+            base.WriteString(command);
+        }
 
         /// <summary>
         ///  WriteAndRead
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
-        string WriteAndReadCommand(string command);
+        public  string WriteAndReadCommand(string command)
+        {
+            return base.WriteAndReadString(command);
+        }
 
         /// <summary>
         /// 获取设备ID号
         /// </summary>
-        string GetID();
+        public abstract string GetID();
 
         /// <summary>
         /// 初始化仪表参数
         /// </summary>
         /// <returns></returns>
-        bool Reset();
+        public abstract bool Reset();
 
         /// <summary>
         /// 设置中心频率  
@@ -49,28 +61,28 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
         /// <param name="unit">频率单位</param>
         /// <param name="value">频率</param>
         /// <returns></returns>
-        bool SetCenterFreq(FrequencyUnit unit, double value);
+        public abstract bool SetCenterFreq(FrequencyUnit unit, double value);
 
         /// <summary>
         /// 设置参考电平  幅度标尺  
         /// </summary>
         /// <param name="value">参考电平 单位dbm</param>
         /// <returns></returns>
-        bool SetRefLevel(double value);
+        public abstract bool SetRefLevel(double value);
 
 
         /// <summary>
         /// 获取中心频率
         /// </summary>
         /// <returns></returns>
-        double GetCenterFreq();
+        public abstract double GetCenterFreq();
 
         /// <summary>
         /// 设置解调开关。
         /// </summary>
         /// <param name="onOff"> 解调开关</param>
         /// <returns></returns>
-        bool SetAfgState(bool onOff);
+        public abstract bool SetAfgState(bool onOff);
 
      
 

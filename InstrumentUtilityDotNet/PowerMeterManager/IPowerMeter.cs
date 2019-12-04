@@ -5,47 +5,59 @@ using System.Text;
 
 namespace InstrumentUtilityDotNet.PowerMeterManager
 {
-    public interface IPowerMeter
+    public abstract class IPowerMeter: InstrumentManager
     {
         /// <summary>
         /// 连接仪表
         /// </summary>
         /// <param name="address"></param>
         /// <returns></returns>
-        bool Connect(string address);
+        public bool Connect(string address)
+        {
+            return base.InitiateIO488(address);
+        }
 
         /// <summary>
         /// 断开连接
         /// </summary>
-        void DisConnect();
+        public void DisConnect()
+        {
+            base.Close();
+        }
         /// <summary>
         ///  Write
         /// </summary>
         /// <param name="command"></param>
-        void WriteCommand(string command);
+        public void WriteCommand(string command)
+        {
+            base.WriteString(command);
+        }
 
         /// <summary>
         ///  WriteAndRead
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
-        string WriteAndReadCommand(string command);
+        public string WriteAndReadCommand(string command)
+        {
+            return base.WriteAndReadString(command);
+        }
         /// <summary>
         /// 获取设备ID号
         /// </summary>
-        string GetID();
+        public abstract string GetID();
 
         /// <summary>
         /// 初始化仪表参数
         /// </summary>
         /// <returns></returns>
-        bool Reset();
+        public abstract bool Reset();
 
         /// <summary>
         /// 单位切换
         /// </summary>
         /// <param name="unit">DBM,W</param>
-        bool PowerUnitChange(PowerUnit unit);
+        public abstract bool PowerUnitChange(PowerUnit unit);
 
 
         /// <summary>
@@ -55,7 +67,7 @@ namespace InstrumentUtilityDotNet.PowerMeterManager
         /// <param name="avg">功率</param>
         /// <param name="swr">驻波比</param>
         /// <returns></returns>
-        bool GetPower(int sensorNum, out double avg, out double swr);
+        public abstract bool GetPower(int sensorNum, out double avg, out double swr);
 
     }
 }
