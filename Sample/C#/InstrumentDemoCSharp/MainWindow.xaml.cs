@@ -30,87 +30,65 @@ namespace InstrumentDemoCsharp
         public MainWindow()
         {
             InitializeComponent();
-
-
         }
 
         private void btnConnect_Click(object sender, RoutedEventArgs e)
         {
-
-
-            
-           IComprehensiveMeter meter =   ComprehensiveMeter.GetInstance(InstrumentUtilityDotNet.ComprehensiveMeterType.Aglient_8920);
-         //  bool res = meter.Connect("TCPIP0::192.168.0.10::5000::SOCKET");
-
+            lbInfo.Content = null;
+            IComprehensiveMeter meter =   ComprehensiveMeter.GetInstance(InstrumentUtilityDotNet.ComprehensiveMeterType.Aglient_8920);
             try
             {
-                meter.GetID();
+                isConnected = meter.Connect(tbAddr.Text);
+                if (isConnected)
+                    lbInfo.Content = "连接成功！仪表ID：" + meter.GetID();
+                else
+                    lbInfo.Content = "连接失败！";
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message);
             }
-
-            ISignalSource signalSource = SignalSource.GetInstance(InstrumentUtilityDotNet.SignalSourceType.RS_SMBV100A);
-            signalSource.GetID();
-
-
-            //instrument = new InstrumentUtilityDotNet.InstrumentManager();
-            //string addr = this.cmbGPIBBoard.Text + "::"+this.tbGPIBID.Text + "::INSTR";    //GPIB0::18::INSTR
-            //bool res = instrument.InitiateIO488(addr);  
-            //if (res)
-            //{
-            //    this.btnConnect.Background = new SolidColorBrush(Colors.YellowGreen);
-            //    this.btnConnect.Content = "连接成功";
-            //    isConnected = true;
-            //}
-            //else
-            //{
-            //    this.btnConnect.Background = new SolidColorBrush(Colors.Transparent);
-            //    this.btnConnect.Content = "连接失败";
-            //    isConnected = false;
-            //}
         }
 
 
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
-            //if (!isConnected)
-            //    MessageBox.Show("通讯失败！");
-            //else
-            //{
-            //    instrument.WriteString(this.tbSend.Text);
-
-            //}
+            if (isConnected)
+            {
+                try
+                {
+                    instrument.WriteString(this.tbSend.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void btnSendAndRecv_Click(object sender, RoutedEventArgs e)
         {
-            //if (!isConnected)
-            //    MessageBox.Show("通讯失败！");
-            //else
-            //{
-            //   this.tbRecv.Text= instrument.WriteAndReadString(this.tbSend.Text);
-
-            //}
+            if (isConnected)
+            {
+                try
+                {
+                    this.tbRecv.Text = instrument.WriteAndReadString(this.tbSend.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
 
         }
-
-        private void BtnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-
-        private void BtnClose_Click(object sender, RoutedEventArgs e)
-        {
-            
-            this.Close();
-        }
-
+ 
         private void btnFindResouce_Click(object sender, RoutedEventArgs e)
         {
+            cmbAddress.Items.Clear();
             InstrumentUtilityDotNet.InstrumentManager instrumentManager = new InstrumentUtilityDotNet.InstrumentManager();
-            string[] str = instrumentManager.FindAllResource();
+            string[] arr = instrumentManager.FindAllResource();
+            foreach (string addr in arr)         
+                cmbAddress.Items.Add(addr);
         }
     }
 }
