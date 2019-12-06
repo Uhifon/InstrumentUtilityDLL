@@ -1,5 +1,5 @@
 #pragma once
-#include "InstrumentControl.h"
+#include "InstrumentUtility.h"
 
 class RS_NRT : public IPowerMeter
 {

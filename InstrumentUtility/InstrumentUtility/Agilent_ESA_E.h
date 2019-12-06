@@ -1,5 +1,5 @@
 #pragma once
-#include "InstrumentControl.h"
+#include "InstrumentUtility.h"
 
 class Agilent_ESA_E : public ISpectropgraph
 {

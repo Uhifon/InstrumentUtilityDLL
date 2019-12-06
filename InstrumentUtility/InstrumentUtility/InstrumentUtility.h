@@ -4,10 +4,10 @@
 #include <stdio.h>
 
 
-#ifdef InstrumentControl_EXPORTS
-#define InstrumentControl_API __declspec(dllimport)   //导入导出申明写反会报dll链接错误
+#ifdef InstrumentUtility_EXPORTS
+#define InstrumentUtility_API __declspec(dllimport)   //导入导出申明写反会报dll链接错误
 #else 
-#define InstrumentControl_API __declspec(dllexport)
+#define InstrumentUtility_API __declspec(dllexport)
 #endif // InstrumentManager_EXPORTS
 
 
@@ -158,11 +158,11 @@ public:
 
 
 
-class InstrumentControl_API InstrumentControl
+class InstrumentUtility_API InstrumentUtility
 {
 public:
-	InstrumentControl();
-	~InstrumentControl();
+	InstrumentUtility();
+	~InstrumentUtility();
 
 	//TODO:在此处填写您的方法
 

@@ -14,7 +14,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
         /// <returns></returns>
         public bool Connect(string address)
         {
-            return base.InitiateIO488(address);
+            return base.Open(address);
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
         /// <summary>
         /// 设置脉冲周期
         /// </summary>
-        /// <param name="period">周期 </param>
+        /// <param name="period">周期 us</param>
         /// <returns></returns>
         public abstract bool SetPulsePeriod(double period);
 

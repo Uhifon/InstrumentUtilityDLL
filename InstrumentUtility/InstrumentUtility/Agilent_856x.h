@@ -1,6 +1,6 @@
 #pragma once
 
-#include "InstrumentControl.h"
+#include "InstrumentUtility.h"
 
 
 class Agilent_856x : public ISpectropgraph

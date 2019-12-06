@@ -56,7 +56,7 @@ namespace InstrumentUtilityDotNet
         /// <summary>
         /// 综测仪
         /// </summary>
-        ComprehensiveMeter
+        SynthesizeMeter
     }
 
     /// <summary>
@@ -94,7 +94,7 @@ namespace InstrumentUtilityDotNet
     /// <summary>
     /// 综测仪型号
     /// </summary>
-    public enum ComprehensiveMeterType
+    public enum SynthesizeMeterType
     {
         Aglient_8920,
         Ceyear_AV4957

@@ -2,7 +2,7 @@
 //
 #include "stdafx.h"
 #include  <iostream>
-#include "InstrumentControl.h"
+#include "InstrumentUtility.h"
 #include <stdlib.h>
 #include "Agilent_856x.h"
 #include "Agilent_E4400.h"
@@ -11,15 +11,15 @@
 
 using namespace std;
 
-InstrumentControl instrumentControl;
+InstrumentUtility instrumentControl;
  
 
-InstrumentControl::InstrumentControl()
+InstrumentUtility::InstrumentUtility()
 {
  
 }
 
-InstrumentControl::~InstrumentControl()
+InstrumentUtility::~InstrumentUtility()
 {
 	 
 }
@@ -31,7 +31,7 @@ Input: str 匹配正则表达式
 Output: descriptor 输出标识设备位置的字符串。
 Return: 
 *************************************************/
-ViStatus InstrumentControl::FindRsrc(ViConstString str, ViChar* descriptor)
+ViStatus InstrumentUtility::FindRsrc(ViConstString str, ViChar* descriptor)
 {
 	ViStatus status = viOpenDefaultRM(&defaultRM);//ViSession,OUT 默认资源管理器会话的唯一逻辑标识符。
 	if (status < VI_SUCCESS)
@@ -67,7 +67,7 @@ ViStatus InstrumentControl::FindRsrc(ViConstString str, ViChar* descriptor)
 }
 
 //打开指向指定资源的会话
-ViStatus InstrumentControl::Open(ViChar*  descriptor)
+ViStatus InstrumentUtility::Open(ViChar*  descriptor)
 {
 	ViStatus status = viOpen(defaultRM,  //ViSession,IN 资源管理器会话(应该总是从viOpenDefaultRM()返回的会话
 					descriptor, //ViConstRsrc,IN 资源的唯一符号名。例：TCPIP0::ftp.ni.com::21::SOCKET，VXI0::0::INSTR，GPIB0::14::INSTR
@@ -84,7 +84,7 @@ ViStatus InstrumentControl::Open(ViChar*  descriptor)
 }
 
 //清理设备
-ViStatus InstrumentControl::Clear(ViSession vi)
+ViStatus InstrumentUtility::Clear(ViSession vi)
 {
 	ViStatus status = viClear(vi);  //ViSession 会话的唯一逻辑标识符
 	if (status < VI_SUCCESS)
@@ -96,7 +96,7 @@ ViStatus InstrumentControl::Clear(ViSession vi)
 
 
 //关闭资源
-ViStatus InstrumentControl::Close(ViObject  vi)
+ViStatus InstrumentUtility::Close(ViObject  vi)
 {
 	ViStatus status = viClose(vi); //ViSession 会话的唯一逻辑标识符
 	if (status < VI_SUCCESS)
@@ -107,7 +107,7 @@ ViStatus InstrumentControl::Close(ViObject  vi)
 }
 
 //设置属性
-ViStatus InstrumentControl::SetAttribute(ViObject vi, ViAttr attribute, ViAttrState attrState)
+ViStatus InstrumentUtility::SetAttribute(ViObject vi, ViAttr attribute, ViAttrState attrState)
 {
 	ViStatus status = viSetAttribute( vi,        //IN 会话的唯一逻辑标识符。
 							attribute,  //IN 要修改其状态的属性。
@@ -122,7 +122,7 @@ ViStatus InstrumentControl::SetAttribute(ViObject vi, ViAttr attribute, ViAttrSt
 
 
 //读取参数
-ViStatus InstrumentControl::Read(ViSession vi, ViPBuf buf, ViUInt32 count, ViPUInt32 retCount)
+ViStatus InstrumentUtility::Read(ViSession vi, ViPBuf buf, ViUInt32 count, ViPUInt32 retCount)
 {
 	ViStatus status = viRead(vi,      //ViSession IN 会话的唯一逻辑标识符
 					buf,     //ViBuf OUT 要发送到设备的数据块的位置
@@ -137,7 +137,7 @@ ViStatus InstrumentControl::Read(ViSession vi, ViPBuf buf, ViUInt32 count, ViPUI
 }
 
 //设置参数
-ViStatus InstrumentControl::Write(ViSession vi, ViBuf buf, ViUInt32 count, ViPUInt32 retCount)
+ViStatus InstrumentUtility::Write(ViSession vi, ViBuf buf, ViUInt32 count, ViPUInt32 retCount)
 {
 	ViStatus	status = viWrite(vi,      //ViSession IN 会话的唯一逻辑标识符
 					 buf,     //ViBuf IN 要发送到设备的数据块的位置
@@ -155,7 +155,7 @@ ViStatus InstrumentControl::Write(ViSession vi, ViBuf buf, ViUInt32 count, ViPUI
 
 
 //获取最近一条错误消息
-char* InstrumentControl::GetCurrentError()
+char* InstrumentUtility::GetCurrentError()
 {
 	if (errorInfo != NULL)
 		return errorInfo;
@@ -165,7 +165,7 @@ char* InstrumentControl::GetCurrentError()
 } 
 
 
-ISpectropgraph* InstrumentControl::GetInstance(SpectrographType spectrographType)
+ISpectropgraph* InstrumentUtility::GetInstance(SpectrographType spectrographType)
 {
 	switch (spectrographType)
 	{
@@ -186,7 +186,7 @@ ISpectropgraph* InstrumentControl::GetInstance(SpectrographType spectrographType
 	return new Agilent_856x();
 }
 
-ISignalSource*  InstrumentControl::GetInstance(SignalSourceType signalSourceType)
+ISignalSource*  InstrumentUtility::GetInstance(SignalSourceType signalSourceType)
 {
 	switch (signalSourceType)
 	{
@@ -208,7 +208,7 @@ ISignalSource*  InstrumentControl::GetInstance(SignalSourceType signalSourceType
 
  
 
-IPowerMeter* InstrumentControl::GetInstance( PowerMeterType powerMeterType)
+IPowerMeter* InstrumentUtility::GetInstance( PowerMeterType powerMeterType)
 {
 	switch (powerMeterType)
 	{
@@ -220,7 +220,7 @@ IPowerMeter* InstrumentControl::GetInstance( PowerMeterType powerMeterType)
 	return new RS_NRT();
 }
 
-ISynthesizeMeter* InstrumentControl::GetInstance(SynthesizeMeterType synthesizeMeterType)
+ISynthesizeMeter* InstrumentUtility::GetInstance(SynthesizeMeterType synthesizeMeterType)
 {
 	switch (synthesizeMeterType)
 	{

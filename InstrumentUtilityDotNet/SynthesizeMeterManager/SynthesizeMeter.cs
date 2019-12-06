@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
+namespace InstrumentUtilityDotNet.SynthesizeMeterManager
 {
-    public  class ComprehensiveMeter 
+    public  class SynthesizeMeter 
     {
 
-        internal ComprehensiveMeter()
+        internal SynthesizeMeter()
         {
 
         }
@@ -17,15 +17,15 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
         /// <summary>
         /// 获取对象实例
         /// </summary>
-        /// <param name="comprehensiveMeterType">仪表型号</param>
+        /// <param name="synthesizeMeterType">仪表型号</param>
         /// <returns></returns>
-        public static IComprehensiveMeter GetInstance(ComprehensiveMeterType comprehensiveMeterType)
+        public static ISynthesizeMeter GetInstance(SynthesizeMeterType synthesizeMeterType)
         {
-            switch (comprehensiveMeterType)
+            switch (synthesizeMeterType)
             {
-                case ComprehensiveMeterType.Aglient_8920:
+                case SynthesizeMeterType.Aglient_8920:
                     return new Aglient_8920();
-                case ComprehensiveMeterType.Ceyear_AV4957:
+                case SynthesizeMeterType.Ceyear_AV4957:
                     return new Ceyear_AV4957();
                 default:
                     return null;

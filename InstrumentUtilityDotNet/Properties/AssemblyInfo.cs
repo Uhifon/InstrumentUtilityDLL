@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("InstrumentUtilityDotNet")]
-[assembly: AssemblyDescription("2019.10.12")]
+[assembly: AssemblyDescription("2019.12.4")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("武汉玉航科技有限公司")]
 [assembly: AssemblyProduct("InstrumentUtilityDotNet")]

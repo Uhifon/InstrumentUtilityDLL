@@ -14,7 +14,7 @@ namespace InstrumentUtilityDotNet.PowerMeterManager
         /// <returns></returns>
         public bool Connect(string address)
         {
-            return base.InitiateIO488(address);
+            return base.Open(address);
         }
 
         /// <summary>

@@ -59,7 +59,7 @@ namespace InstrumentUtilityDotNet
         /// </summary>
         /// <param name="m_IOName">GPIB0::" + addr + "::INSTR,TCPIP0::192.168.0.10::5000::SOCKET</param>
         /// <returns></returns>
-        public bool InitiateIO488(string m_IOName)
+        public bool Open(string m_IOName)
         {
             try
             {
@@ -72,7 +72,33 @@ namespace InstrumentUtilityDotNet
             }
             catch { return false; }
         }
+     
+        /// <summary>
+        /// 关闭IO488 IO接口
+        /// </summary>
+        public void Close()
+        {
+            try
+            {
+                if (m_IO488 != null)
+                    m_IO488.IO.Close();
+            }
+            catch { }
+        }
 
+        /// <summary>
+        /// 清理IO接口缓存区函数、关闭接口函数、设置超时时间函数
+        /// </summary>
+        public void Clear()
+        {
+            try
+            {
+
+                if (m_IO488 != null)
+                    m_IO488.IO.Clear();
+            }
+            catch { }
+        }
 
         /// <summary>
         /// 发送命令 字符串型
@@ -251,31 +277,6 @@ namespace InstrumentUtilityDotNet
             return m_Temp;
         }
 
-        /// <summary>
-        /// 清理IO接口缓存区函数、关闭接口函数、设置超时时间函数
-        /// </summary>
-        public void Clear()
-        {
-            try
-            {
-               
-                if (m_IO488 != null)
-                    m_IO488.IO.Clear();
-            }
-            catch { }
-        }
-
-        /// <summary>
-        /// 关闭IO488 IO接口
-        /// </summary>
-        public void Close()
-        {
-            try
-            {
-                if (m_IO488 != null)
-                    m_IO488.IO.Close();
-            }
-            catch { }
-        }
+        
     }
 }

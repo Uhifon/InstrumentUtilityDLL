@@ -1,4 +1,4 @@
-﻿using InstrumentUtilityDotNet.ComprehensiveMeterManager;
+﻿using InstrumentUtilityDotNet.SynthesizeMeterManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;

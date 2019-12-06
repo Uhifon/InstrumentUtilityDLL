@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
+namespace InstrumentUtilityDotNet.SynthesizeMeterManager
 {
-    public abstract class IComprehensiveMeter: InstrumentManager
+    public abstract class ISynthesizeMeter: InstrumentManager
     {
         /// <summary>
         /// 连接仪表
@@ -14,7 +14,7 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
         /// <returns></returns>
         public bool Connect(string address)
         {
-            return base.InitiateIO488(address);
+            return base.Open(address);
         }
 
         /// <summary>
@@ -58,10 +58,10 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
         /// <summary>
         /// 设置中心频率  
         /// </summary>
-        /// <param name="unit">频率单位</param>
         /// <param name="value">频率</param>
+        /// <param name="unit">频率单位</param>
         /// <returns></returns>
-        public abstract bool SetCenterFreq(FrequencyUnit unit, double value);
+        public abstract bool SetCenterFreq(double value, FrequencyUnit unit);
 
         /// <summary>
         /// 设置参考电平  幅度标尺  

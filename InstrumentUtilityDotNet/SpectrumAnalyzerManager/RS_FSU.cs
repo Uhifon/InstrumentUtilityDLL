@@ -87,10 +87,10 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
         /// <summary>
         /// 设置中心频率  
         /// </summary>
-        /// <param name="unit">频率单位</param>
         /// <param name="value">值</param>
+        /// <param name="unit">频率单位</param>
         /// <returns></returns>
-        public override bool SetCenterFreq(FrequencyUnit unit, double value)
+        public override bool SetCenterFreq( double value, FrequencyUnit unit)
         {
             string sendMsg = "FREQ:CENT " + value;
             switch (unit)

@@ -5,17 +5,17 @@
 #include "visa.h"
 #include <stdlib.h>
 #include  <iostream>
-#include "InstrumentControl.h"
+#include "InstrumentUtility.h"
  
 
-//#pragma comment(lib,"InstrumentControl.lib")
+//#pragma comment(lib,"InstrumentUtility.lib")
 using namespace std;
 char* err;
 
 int main()
 {
 	//char instrDescriptor[VI_FIND_BUFLEN];
-	InstrumentControl instrumentControl;
+	InstrumentUtility instrumentControl;
 	ISpectropgraph* spectropgraph = instrumentControl.GetInstance(SpectrographType::_Agilent_856x);
 	bool res = spectropgraph->OpenInstrument("GPIB0::14:INSTR");
 	if (res)

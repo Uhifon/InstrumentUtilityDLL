@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
+namespace InstrumentUtilityDotNet.SynthesizeMeterManager
 {
-    public class Ceyear_AV4957 :  IComprehensiveMeter
+    public class Aglient_8920 :ISynthesizeMeter
     {
-
-
+ 
         /// <summary>
         /// 获取设备ID号
         /// </summary>
@@ -22,7 +21,7 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
             }
             catch (Exception ex)
             {
-                throw (ex);
+                throw(ex);
             }
         }
 
@@ -46,12 +45,13 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
         /// <summary>
         /// 设置中心频率  
         /// </summary>
-        /// <param name="unit">频率单位</param>
         /// <param name="value">频率</param>
+        /// <param name="unit">频率单位</param>
         /// <returns></returns>
-        public override bool SetCenterFreq(FrequencyUnit unit, double value)
+        public override bool SetCenterFreq(double value, FrequencyUnit unit)
         {
-            string sendMsg = "FREQ: CENT ";
+
+            string sendMsg = "RFG: FREQ ";
             switch (unit)
             {
                 case FrequencyUnit.Hz:
@@ -76,7 +76,6 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
             {
                 throw (ex);
             }
-
         }
 
         /// <summary>
@@ -86,7 +85,7 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
         /// <returns></returns>
         public override bool SetRefLevel(double value)
         {
-            string sendMsg = "DISP:WIND:TRAC:Y:RLEV " + value + "DBM"; ;
+            string sendMsg = "RFG:AMPL " + value + "DBM;";
             try
             {
                 base.WriteString(sendMsg);
@@ -98,13 +97,15 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
             }
         }
 
+
+
         /// <summary>
         /// 获取中心频率
         /// </summary>
         /// <returns></returns>
         public override double GetCenterFreq()
         {
-            string sendMsg = "FREQ:CENT?";
+            string sendMsg = "MEAS: AFR: FREQ ?;";
             try
             {
                 string recvMsg = base.WriteAndReadString(sendMsg);
@@ -116,18 +117,19 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
             }
         }
 
+
         /// <summary>
-        /// 设置解调开关。 
+        /// 设置解调开关
         /// </summary>
-        /// <param name="onOff">音频开关</param>
+        /// <param name="onOff"> 设置解调开关</param>
         /// <returns></returns>
         public override bool SetAfgState(bool onOff)
         {
             string sendMsg = null;
             if (!onOff)
-                sendMsg = "DMOD:STAT OFF ";
+                sendMsg = "AFG1:FM:STAT OFF";
             else
-                sendMsg = "DMOD:STAT ON ";
+                sendMsg = "AFG1:FM:STAT ON";
             try
             {
                 base.WriteString(sendMsg);
@@ -139,5 +141,9 @@ namespace InstrumentUtilityDotNet.ComprehensiveMeterManager
             }
         }
 
+
+
+ 
     }
+
 }
