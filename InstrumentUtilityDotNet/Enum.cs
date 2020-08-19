@@ -68,7 +68,8 @@ namespace InstrumentUtilityDotNet
         Agilent_ESA_E,
         Agilent_E4407B,
         RS_FSU,
-        RS_FSW
+        RS_FSW,
+        Ceyear_4024D_403X
     }
 
     /// <summary>
@@ -80,7 +81,9 @@ namespace InstrumentUtilityDotNet
         HP_8360,
         RS_SMHU,
         RS_SMA100A,
-        RS_SMBV100A
+        RS_SMBV100A,
+        Ceyear_AV1431,
+        Ceyear_AV146X
     }
 
     /// <summary>

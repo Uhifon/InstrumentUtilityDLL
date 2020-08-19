@@ -36,6 +36,8 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
                     return new RS_FSU();
                 case SpectrumAnalyzerType.RS_FSW:
                     return new RS_FSU();
+                case SpectrumAnalyzerType.Ceyear_4024D_403X:
+                    return new Ceyear_4024D();
                 default:
                     return null;
             }

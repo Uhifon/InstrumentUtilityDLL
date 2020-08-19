@@ -11,7 +11,6 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
     /// </summary>
     public class Agilent_E4400: ISignalSource
     {
-  
         /// <summary>
         /// 获取设备ID号
         /// </summary>
@@ -36,8 +35,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
             string sendMsg = "IP;";
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
@@ -58,8 +56,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
                 sendMsg = "OUTP:ALL OFF";
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
@@ -67,7 +64,6 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
             }
 
         }
-
 
         /// <summary>
         /// 设置频率、功率
@@ -97,8 +93,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
             sendMsg += "POW:LEV " + level + "DBM";
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
@@ -133,8 +128,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
             }
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
@@ -153,8 +147,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
             string sendMsg = "POW:LEV " + level + "DBM";
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
@@ -166,7 +159,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
         /// </summary>
         /// <param name="onOff"></param>
         /// <returns></returns>
-        public override bool SetPulse(bool state)
+        public override bool SetPulseSwitch(bool state)
         {
             string sendMsg = string.Empty;
             if (state)
@@ -175,8 +168,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
                 sendMsg = "PULM:STATe OFF";
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
@@ -194,8 +186,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
             string sendMsg = "PULM:INTernal:PWIDth " + width + "us";         //INTernal可去掉
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
@@ -215,8 +206,30 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
             string sendMsg = "PULM:INTernal:PERiod " + period + "us";         //INTernal可去掉
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
+        /// <summary>
+        /// 设置调制开关
+        /// </summary>
+        /// <param name="onOff"></param>
+        /// <returns></returns>
+        public override bool SetModulationSwitch(bool state)
+        {
+            string sendMsg = string.Empty;
+            if (state)
+                sendMsg = "OUTPut:MODulation ON";
+            else
+                sendMsg = "OUTPut:MODulation OFF";
+            try
+            {
+                return base.WriteString(sendMsg);
+
             }
             catch (Exception ex)
             {

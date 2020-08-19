@@ -34,7 +34,7 @@ namespace InstrumentUtilityDotNet.PowerMeterManager
             string sendMsg = "IP;";
             try
             {
-                base.WriteString(sendMsg);
+                return base.WriteString(sendMsg);
                 return true;
             }
             catch (Exception ex)
@@ -52,7 +52,7 @@ namespace InstrumentUtilityDotNet.PowerMeterManager
             string sendMsg = ":UNIT0:POW " + unit.ToString();
             try
             {
-                base.WriteString(sendMsg);
+                return base.WriteString(sendMsg);
                 return true;
             }
             catch (Exception ex)

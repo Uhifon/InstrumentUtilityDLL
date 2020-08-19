@@ -35,7 +35,7 @@ namespace InstrumentUtilityDotNet.SynthesizeMeterManager
             string sendMsg = "*RST";
             try
             {
-                base.WriteString(sendMsg);
+                return base.WriteString(sendMsg);
                 return true;
             }
             catch (Exception ex)
@@ -69,8 +69,7 @@ namespace InstrumentUtilityDotNet.SynthesizeMeterManager
             }
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
@@ -89,8 +88,7 @@ namespace InstrumentUtilityDotNet.SynthesizeMeterManager
             string sendMsg = "DISP:WIND:TRAC:Y:RLEV " + value + "DBM"; ;
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
@@ -130,8 +128,7 @@ namespace InstrumentUtilityDotNet.SynthesizeMeterManager
                 sendMsg = "DMOD:STAT ON ";
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {

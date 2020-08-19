@@ -86,7 +86,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
         /// </summary>
         /// <param name="onOff"> </param>
         /// <returns></returns>
-        public abstract bool SetPulse(bool onOff);
+        public abstract bool SetPulseSwitch(bool onOff);
 
         /// <summary>
         /// 设置脉冲带宽
@@ -103,5 +103,11 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
         /// <returns></returns>
         public abstract bool SetPulsePeriod(double period);
 
+        /// <summary>
+        /// 设置调制开关
+        /// </summary>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        public abstract bool SetModulationSwitch(bool state);
     }
 }

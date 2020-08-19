@@ -8,7 +8,6 @@ namespace InstrumentUtilityDotNet.PowerMeterManager
 {
     public  class PowerMeter
     {
-
         internal PowerMeter()
         {   
              

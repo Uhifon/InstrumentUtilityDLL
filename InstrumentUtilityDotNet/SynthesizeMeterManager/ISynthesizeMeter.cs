@@ -5,7 +5,7 @@ using System.Text;
 
 namespace InstrumentUtilityDotNet.SynthesizeMeterManager
 {
-    public abstract class ISynthesizeMeter: InstrumentManager
+    public abstract class ISynthesizeMeter:   InstrumentManager
     {
         /// <summary>
         /// 连接仪表

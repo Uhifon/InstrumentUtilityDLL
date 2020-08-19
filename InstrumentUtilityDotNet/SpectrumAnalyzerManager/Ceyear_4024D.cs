@@ -1,15 +1,21 @@
-﻿using System;
+﻿using Ivi.Visa;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
 {
-    public class Agilent_856x :  ISpectrumAnalyzer
+    public class Ceyear_4024D : ISpectrumAnalyzer
     {
+
         /// <summary>
-        /// 获取设备ID号 
+        /// 获取设备ID号
         /// </summary>
         public override string GetID()
         {
-            string sendMsg = "ID?;";
+            string sendMsg = "*IDN?";
             try
             {
                 return base.WriteAndReadString(sendMsg);
@@ -19,13 +25,14 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
                 throw (ex);
             }
         }
+
         /// <summary>
         /// 初始化仪表参数
         /// </summary>
         /// <returns></returns>
         public override bool Reset()
         {
-            string sendMsg = "IP;";
+            string sendMsg = "*RST";
             try
             {
                 return base.WriteString(sendMsg);
@@ -39,7 +46,7 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
 
 
         /// <summary>
-        /// 获取中心频率  
+        /// 获取中心频率 
         /// </summary>
         /// <returns></returns>
         public override double GetCenterFreq()
@@ -47,7 +54,7 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
             string recvMsg = null;
             try
             {
-                recvMsg = base.WriteAndReadString("CF?;");
+                recvMsg = base.WriteAndReadString(":FREQ:CENT?");
                 if (recvMsg != "")
                     return Convert.ToDouble(recvMsg);
                 else
@@ -69,8 +76,8 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
             string recvMsg = null;
             try
             {
-                recvMsg = base.WriteAndReadString("MKA?;");
-                double x = -999;
+                recvMsg = base.WriteAndReadString(":CALC:MARK1:Y?");
+                double x= -999;
                 bool res = double.TryParse(recvMsg, out x);
                 if (res)
                     return x;
@@ -92,7 +99,7 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
         /// <returns></returns>
         public override bool SetCenterFreq(double value, FrequencyUnit unit)
         {
-            string sendMsg = "CF  " + value;
+            string sendMsg = ":FREQ:CENT " + value;
             switch (unit)
             {
                 case FrequencyUnit.Hz:
@@ -118,7 +125,6 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
                 throw (ex);
             }
         }
-
         /// <summary>
         /// 设置RBW  
         /// </summary>
@@ -132,12 +138,12 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
             {
                 if (isAuto)
                 {
-                    sendMsg = "BAND:AUTO ON";
+                    sendMsg = ":BAND:AUTO ON";
                     return base.WriteString(sendMsg);
                 }
                 else
                 {
-                    sendMsg = "BAND:AUTO OFF;RB " + value + "kHz;";
+                    sendMsg = ":BAND:RES " + value + "kHz;";
                     return base.WriteString(sendMsg);
                 }
             }
@@ -147,7 +153,6 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
             }
         }
 
-      
 
         /// <summary>
         /// 设置参考电平 
@@ -156,15 +161,15 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
         /// <returns></returns>
         public override bool SetRefLevel(double value)
         {
-            string sendMsg = "RL " + value + "dBm;";
+
+            string sendMsg = ":DISP:WIND:TRAC:Y:RLEV " + value;
             try
             {
                 return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                throw (ex);
             }
         }
 
@@ -174,15 +179,15 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
         /// <returns></returns>
         public override bool MarkPeak()
         {
-            string sendMsg = "TS;MKPK HI;";
+            //string sendMsg = ":CALC:MARK:MAX";
+            string sendMsg = ":CALC:MARK1:FUNC:PEAK";
             try
             {
                 return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                throw (ex);
             }
         }
 
@@ -192,16 +197,16 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
         /// <param name="isAuto">自动/手动衰减</param>
         /// <param name="value">衰减值 单位DB</param>
         /// <returns></returns>
-        public override bool SetAttenuation(bool isAuto,double value)
+        public override bool SetAttenuation(bool isAuto, double value = 0)
         {
             string sendMsg = null;
             if (isAuto)
             {
-                sendMsg = "AT AUTO";
+                sendMsg = ":POWer:ATTenuation:AUTO ON";
             }
             else
             {
-                sendMsg = "AT MANUAL;AT  " + value + "DB";
+                sendMsg = ":POWer:ATTenuation " + value;
             }
             try
             {
@@ -215,7 +220,6 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
 
         }
 
-    
 
         /// <summary>
         /// 设置SPAN
@@ -223,18 +227,16 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
         /// <param name="value">带宽</param>
         /// <param name="unit">单位</param>
         /// <returns></returns>
-        public override bool SetSpan(double value,FrequencyUnit unit)
+        public override bool SetSpan(double value, FrequencyUnit unit)
         {
-            string sendMsg = "SP " + value + unit.ToString();
+            string sendMsg = ":FREQ:SPAN " + value + unit.ToString();
             try
             {
                 return base.WriteString(sendMsg);
- 
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                throw (ex);
             }
         }
 
@@ -245,17 +247,15 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
         /// <returns></returns>
         public override bool SetRefOffset(double value)
         {
-            string sendMsg = "ROFFSET " + value +"dB";
+            string sendMsg = " ";
             try
             {
                 return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return false;
+                throw (ex);
             }
         }
-
     }
 }

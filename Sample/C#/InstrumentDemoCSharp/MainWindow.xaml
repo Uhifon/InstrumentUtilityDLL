@@ -13,9 +13,9 @@
         <TabControl  >
             <TabItem Header="连接测试" Height="30" Width="100"  >
                 <Grid>
-                    <Button x:Name="btnConnect" Content="连  接" HorizontalAlignment="Left" Margin="303,59,0,0" VerticalAlignment="Top" Width="90" Height="34" Click="btnConnect_Click" />
-                    <Label Content="仪表地址：" HorizontalAlignment="Left" Margin="72,63,0,0" VerticalAlignment="Top" Width="82"/>
-                    <TextBox x:Name="tbAddr" HorizontalAlignment="Left" Height="26" Margin="145,63,0,0" TextWrapping="Wrap" Text="GPIB0::14::INSTR" VerticalAlignment="Top" Width="135"/>
+                    <Button x:Name="btnConnect" Content="连  接" HorizontalAlignment="Left" Margin="359,57,0,0" VerticalAlignment="Top" Width="90" Height="34" Click="btnConnect_Click" />
+                    <Label Content="仪表地址：" HorizontalAlignment="Left" Margin="28,63,0,0" VerticalAlignment="Top" Width="82"/>
+                    <TextBox x:Name="tbAddr" HorizontalAlignment="Left" Height="26" Margin="100,63,0,0" TextWrapping="Wrap" Text="GPIB0::14::INSTR" VerticalAlignment="Top" Width="245"/>
 
                     <TextBox x:Name="tbSend" HorizontalAlignment="Left" Height="68" Margin="54,151,0,0" TextWrapping="Wrap" Text="*RST" VerticalAlignment="Top" Width="291"/>
                     <TextBox x:Name="tbRecv" HorizontalAlignment="Left" IsReadOnly="True" Background="WhiteSmoke" Height="68" Margin="54,274,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="291"/>
@@ -23,8 +23,9 @@
                     <Button x:Name="btnSendAndRecv" Content="发送并接收" HorizontalAlignment="Left" Margin="365,191,0,0" VerticalAlignment="Top" Width="84" Height="28" Click="btnSendAndRecv_Click"/>
                     <Label Content="发送指令：" HorizontalAlignment="Left" Margin="54,120,0,0" VerticalAlignment="Top" Width="82"/>
                     <Label Content="接收信息：" HorizontalAlignment="Left" Margin="54,243,0,0" VerticalAlignment="Top" Width="82"/>
-                    <Button x:Name="btnFind" Content="寻找仪表" HorizontalAlignment="Left" Margin="303,10,0,0" VerticalAlignment="Top" Width="90" Height="34"/>
-                    <ComboBox x:Name="cmbAddress" HorizontalAlignment="Left" Margin="145,17,0,0" VerticalAlignment="Top" Width="135"/>
+                    <Button x:Name="btnFindResouce" Click="btnFindResouce_Click" Content="寻找仪表" HorizontalAlignment="Left" Margin="359,10,0,0" VerticalAlignment="Top" Width="90" Height="34"/>
+                    <ComboBox x:Name="cmbAddress" HorizontalAlignment="Left" Margin="100,17,0,0" VerticalAlignment="Top" Width="245"/>
+                    <Label Content="仪表地址：" HorizontalAlignment="Left" Margin="28,17,0,0" VerticalAlignment="Top" Width="82"/>
 
                 </Grid>
             </TabItem>
@@ -53,23 +54,24 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Content="GPIB地址：" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
-                    <TextBox Name="tbSpeAddr" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="GPIB0::14::INSTR" VerticalAlignment="Center"  Margin="3"></TextBox>
-                    <Button Name="btnSpeOpen" Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="4" Content="打开" Margin="3" Click="btnSpeOpen_Click" Background="AliceBlue"/>
-                    <Button Name="btnSpeClose"  Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="5" Content="关闭" Margin="3" Click="btnSpeClose_Click" Background="AliceBlue"></Button>
-                    <Button Name="btnSpeReset"  Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="6" Content="复位" Margin="3" Click="btnSpeReset_Click" Background="AliceBlue"></Button>
+                    <TextBox Name="tbSpeAddr" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Text="TCPIP0::172.17.200.12::5000::SOCKET" VerticalAlignment="Center"  Margin="3,6,3,7"></TextBox>
+                    <Button Name="btnSpeOpen" Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="5" Content="打开" Margin="4,17,2,13" Click="btnSpeOpen_Click" Background="AliceBlue"/>
+                    <Button Name="btnSpeClose"  Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="6" Content="关闭" Margin="4,17,2,13" Click="btnSpeClose_Click" Background="AliceBlue"/>
+                    <Button Name="btnSpeReset"  Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="7" Content="复位" Margin="4,17,174,13" Click="btnSpeReset_Click" Background="AliceBlue"></Button>
 
                     <Label Grid.Row="1" Grid.Column="0" Content="仪表型号：" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
-                    <ComboBox Name="cmbSpeType"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndex="0"   VerticalAlignment="Center"  Margin="3" Background="White">
+                    <ComboBox Name="cmbSpeType"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" SelectedIndex="0"   VerticalAlignment="Center"  Margin="3,7,10,6" Background="White">
                         <ComboBoxItem>Agilent_856x</ComboBoxItem>
                         <ComboBoxItem>Agilent_ESA_E</ComboBoxItem>
                         <ComboBoxItem>Agilent_E4407B</ComboBoxItem>
                         <ComboBoxItem>RS_FSU</ComboBoxItem>
                         <ComboBoxItem>RS_FSW</ComboBoxItem>
+                        <ComboBoxItem>Ceyear_4024D_403X</ComboBoxItem>
                     </ComboBox>
 
                     <Label   Grid.Row="2" Grid.Column="0" Content="仪表ID："  VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
-                    <TextBox Name="tbSpeID" Background="WhiteSmoke" IsReadOnly="True"  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"  Height="20"   VerticalAlignment="Center"  Margin="3"></TextBox>
-                    <Button Name="btnSpeIDQuery" Grid.Row="2" Grid.Column="4" Content="查询" Margin="3" Click="btnSpeIDQuery_Click" Background="AliceBlue"></Button>
+                    <TextBox Name="tbSpeID" Background="WhiteSmoke" IsReadOnly="True"  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4"  Height="20"   VerticalAlignment="Center"  Margin="3,8,10,7"></TextBox>
+                    <Button Name="btnSpeIDQuery" Grid.Row="2" Grid.Column="5" Content="查询" Margin="6,4,0,3" Click="btnSpeIDQuery_Click" Background="AliceBlue"></Button>
 
                     <Label   Grid.Row="3" Grid.Column="0"  Content="中心频率："  VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
                     <TextBox Name="tbSpeCentFreq" Grid.Row="3" Grid.Column="1" Text="100" VerticalAlignment="Center"  Margin="3"></TextBox>
@@ -110,7 +112,7 @@
                     <Label Grid.Row="8" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Right">MKA峰值：</Label>
                     <TextBox Name="tbSpeMKA" Background="WhiteSmoke" Grid.Row="8" Grid.Column="1" Text="" IsReadOnly="True" VerticalAlignment="Center"  Margin="3"></TextBox>
                     <Label  Grid.Row="8" Grid.Column="2" VerticalAlignment="Center">dBm</Label>
-                    <Button Name="btnSpeMKA" Grid.Row="8" Grid.Column="4" Content="Mark-peak" Margin="3" Click="btnSpeMKA_Click" Background="AliceBlue"></Button>
+                    <Button Name="btnSpeMKA" Grid.Row="8" Grid.Column="4" Content="Mark-peak" Margin="3,3,3,0" Click="btnSpeMKA_Click" Background="AliceBlue" Height="29" VerticalAlignment="Top"></Button>
 
                 </Grid>
             </TabItem>
@@ -118,6 +120,9 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="35"></RowDefinition>
+                        <RowDefinition  Height="35"></RowDefinition>
+                        <RowDefinition  Height="35"></RowDefinition>
+                        <RowDefinition  Height="35"></RowDefinition>
                         <RowDefinition  Height="35"></RowDefinition>
                         <RowDefinition  Height="35"></RowDefinition>
                         <RowDefinition  Height="35"></RowDefinition>
@@ -138,24 +143,25 @@
                         <ColumnDefinition Width="80"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Content="GPIB地址：" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
-                    <TextBox Name="tbSigAddr" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="GPIB0::14::INSTR" VerticalAlignment="Center"  Margin="3"></TextBox>
-                    <Button Name="btnSigOpen" Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="4" Content="打开" Margin="3" Click="btnSigOpen_Click" Background="AliceBlue"/>
-                    <Button Name="btnSigClose"  Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="5" Content="关闭" Margin="3" Click="btnSigClose_Click" Background="AliceBlue"></Button>
-                    <Button Name="btnSigReset"  Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="6" Content="复位" Margin="3" Click="btnSigReset_Click" Background="AliceBlue"></Button>
-
-                    <Label Grid.Row="1" Grid.Column="0" Content="仪表型号：" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+                    <Label Grid.Row="0" Grid.Column="0" Content="仪表地址：" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+                    <TextBox Name="tbSigAddr" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Text="TCPIP0::172.17.200.11::5000::SOCKET" VerticalAlignment="Center"  Margin="3,6,10,7"></TextBox>
+                    <Button Name="btnSigOpen" Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="5" Content="打开" Margin="6,15,0,15" Click="btnSigOpen_Click" Background="AliceBlue"/>
+                    <Button Name="btnSigClose"  Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="6" Content="关闭" Margin="6,15,0,15" Click="btnSigClose_Click" Background="AliceBlue"></Button>
+                    <Button Name="btnSigReset"  Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="7" Content="复位" Margin="10,15,168,15" Click="btnSigReset_Click" Background="AliceBlue"></Button>
+                    <Label Grid.Row="1" Grid.Column="0" Content="仪表型号："   VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
                     <ComboBox Name="cmbSigType"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndex="0"   VerticalAlignment="Center"  Margin="3" Background="White">
                         <ComboBoxItem>Agilent_E4400</ComboBoxItem>
                         <ComboBoxItem>HP_8360</ComboBoxItem>
                         <ComboBoxItem>RS_SMHU</ComboBoxItem>
                         <ComboBoxItem>RS_SMA100A</ComboBoxItem>
                         <ComboBoxItem>RS_SMBV100A</ComboBoxItem>
+                        <ComboBoxItem>Ceyear_AV1431</ComboBoxItem>
+                        <ComboBoxItem>Ceyear_AV1487/144x/146x</ComboBoxItem>
                     </ComboBox>
 
                     <Label   Grid.Row="2" Grid.Column="0" Content="仪表ID："  VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
-                    <TextBox Name="tbSigID" Background="WhiteSmoke" IsReadOnly="True" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"  Height="20"   VerticalAlignment="Center"  Margin="3"></TextBox>
-                    <Button Name="btnSigIDQuery" Grid.Row="2" Grid.Column="4" Content="查询" Margin="3" Click="btnSigIDQuery_Click" Background="AliceBlue"></Button>
+                    <TextBox Name="tbSigID" Background="WhiteSmoke" IsReadOnly="True" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4"  Height="20"   VerticalAlignment="Center"  Margin="3,8,3,7"></TextBox>
+                    <Button Name="btnSigIDQuery" Grid.Row="2" Grid.Column="5" Content="查询" Margin="10,6,76,0" Click="btnSigIDQuery_Click" Background="AliceBlue" Grid.ColumnSpan="2"></Button>
 
                     <Label   Grid.Row="3" Grid.Column="0"  Content="频率："  VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
                     <TextBox Name="tbSigFreq" Grid.Row="3" Grid.Column="1" Text="100" VerticalAlignment="Center"  Margin="3"></TextBox>
@@ -165,26 +171,38 @@
                         <ComboBoxItem>MHz</ComboBoxItem>
                         <ComboBoxItem>GHz</ComboBoxItem>
                     </ComboBox>
-                    
+
                     <Label   Grid.Row="4" Grid.Column="0"  Content="功率："  VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
                     <TextBox Name="tbSigPower" Grid.Row="4" Grid.Column="1" Text="0" VerticalAlignment="Center"  Margin="3"></TextBox>
                     <Label   Grid.Row="4" Grid.Column="2"  Content="dBm"  VerticalAlignment="Center" ></Label>
                     <Button Name="btnSigFreqPowerSet" Grid.Row="3" Grid.Column="4" Grid.RowSpan="2" Height="50" Content="设置" Margin="3" Click="btnSigFreqPowerSet_Click" Background="AliceBlue"></Button>
-           
+
                     <Label  Grid.Row="5" Grid.Column="0"   Content="信号模式：" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
-                    <ComboBox Name="cmbSigTriggerMode"  Grid.Row="5" Grid.Column="1"  SelectedIndex="0"   VerticalAlignment="Center"  Margin="3" Background="White">
+                    <ComboBox Name="cmbSigTriggerMode"  Grid.Row="5" Grid.Column="1"  SelectedIndex="0"  SelectionChanged="cmbSigTriggerMode_SelectionChanged"  VerticalAlignment="Center"  Margin="3" Background="White">
                         <ComboBoxItem>连续波</ComboBoxItem>
                         <ComboBoxItem>脉冲波</ComboBoxItem>
                     </ComboBox>
                     <Button Name="btnSigTriggerModeSet" Grid.Row="5" Grid.Column="4" Grid.RowSpan="3" Content="设置" Margin="3" Height="70" Click="btnSigTriggerModeSet_Click" Background="AliceBlue"></Button>
 
                     <Label  Grid.Row="6" Grid.Column="0"   Content="脉冲带宽：" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
-                    <TextBox Name="tbSigPulseWidth" Grid.Row="6" Grid.Column="1" Text="100" VerticalAlignment="Center"  Margin="3"></TextBox>
+                    <TextBox Name="tbSigPulseWidth" Grid.Row="6" IsEnabled="False" Grid.Column="1" Text="100" VerticalAlignment="Center"  Margin="3"></TextBox>
                     <Label  Grid.Row="6" Grid.Column="2"   Content="us" VerticalAlignment="Center" ></Label>
-                   
+
                     <Label  Grid.Row="7" Grid.Column="0"   Content="脉冲周期：" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
-                    <TextBox Name="tbSigPulsePeriod" Grid.Row="7" Grid.Column="1" Text="1000" VerticalAlignment="Center"  Margin="3"></TextBox>
+                    <TextBox Name="tbSigPulsePeriod" Grid.Row="7" IsEnabled="False"  Grid.Column="1" Text="1000" VerticalAlignment="Center"  Margin="3"></TextBox>
                     <Label  Grid.Row="7" Grid.Column="2"   Content="us" VerticalAlignment="Center" ></Label>
+
+                    <Label  Grid.Row="8" Grid.Column="0"   Content="脉冲开关：" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+                    <ComboBox Name="cmbSigPluseSwitch"  Grid.Row="8" Grid.Column="1"  SelectedIndex="0"  SelectionChanged="cmbSigPluseSwitch_SelectionChanged"  VerticalAlignment="Center"  Margin="3" Background="White">
+                        <ComboBoxItem>关</ComboBoxItem>
+                        <ComboBoxItem>开</ComboBoxItem>
+                    </ComboBox>
+
+                    <Label  Grid.Row="9" Grid.Column="0"   Content="调制开关：" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+                    <ComboBox Name="cmbSigModulationSwitch"  Grid.Row="9" Grid.Column="1"  SelectedIndex="0"  SelectionChanged ="cmbSigModulationSwitch_SelectionChanged"  VerticalAlignment="Center"  Margin="3" Background="White">
+                        <ComboBoxItem>关</ComboBoxItem>
+                        <ComboBoxItem>开</ComboBoxItem>
+                    </ComboBox>
 
                 </Grid>
             </TabItem>
@@ -233,18 +251,18 @@
                         <ComboBoxItem>1</ComboBoxItem>
                         <ComboBoxItem>2</ComboBoxItem>
                     </ComboBox>
-                    
+
                     <Label   Grid.Row="4" Grid.Column="0" Content="功率："  VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
                     <TextBox Name="tbPowerAvg" IsReadOnly="True" Background="WhiteSmoke" Grid.Row="4" Grid.Column="1"   Height="20"   VerticalAlignment="Center"  Margin="3"></TextBox>
                     <ComboBox Name="cmbPowerMeterUnit"  Grid.Row="4" Grid.Column="2"  SelectedIndex="0"   VerticalAlignment="Center"  Margin="3" Background="White" SelectionChanged="cmbPowerMeterUnit_SelectionChanged">
                         <ComboBoxItem>DBM</ComboBoxItem>
                         <ComboBoxItem>W</ComboBoxItem>
                     </ComboBox>
-                    
+
                     <Label   Grid.Row="5" Grid.Column="0" Content="驻波比："  VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
                     <TextBox Name="tbPowerSwr" IsReadOnly="True" Background="WhiteSmoke" Grid.Row="5" Grid.Column="1"   Height="20"   VerticalAlignment="Center"  Margin="3"></TextBox>
                     <Button Name="btnPowerValueQuery" Grid.Row="3" Grid.Column="4" Grid.RowSpan="3" Content="查询" Margin="3" Click="btnPowerValueQuery_Click" Background="AliceBlue"></Button>
-                    
+
                 </Grid>
             </TabItem>
             <TabItem Header="综测仪" Height="30" Width="100">

@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace InstrumentUtilityDotNet.SignalSourceManager
 {
-
-    /// <summary>
-    ///HP8360系列
-    /// </summary>
-    public class HP_8360 : ISignalSource
+    class AV1431:ISignalSource
     {
-      
         /// <summary>
         /// 获取设备ID号
         /// </summary>
@@ -79,8 +73,8 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
         /// <returns></returns>
         public override bool SetFreqAndLevel(FrequencyUnit unit, double freq, double level)
         {
-            
-            string sendMsg = "FREQ:CW "+ freq;
+
+            string sendMsg = "FREQ:CW " + freq;
             switch (unit)
             {
                 case FrequencyUnit.Hz:
@@ -116,7 +110,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
         public override bool SetFreq(FrequencyUnit unit, double freq)
         {
 
-            string sendMsg = "FREQ:CW "+ freq;
+            string sendMsg = "FREQ:CW " + freq;
             switch (unit)
             {
                 case FrequencyUnit.Hz:
@@ -147,10 +141,10 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
         /// </summary>
         /// <param name="level">功率</param>
         /// <returns></returns>
-        public override bool SetLevel (double level)
+        public override bool SetLevel(double level)
         {
 
-            string sendMsg = ":POW:LEV " + level + "DBM";
+            string sendMsg = "POW:LEV " + level + "DBM";
             try
             {
                 return base.WriteString(sendMsg);
@@ -161,7 +155,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
             }
         }
 
- 
+
 
         /// <summary>
         /// 打开脉冲发生器
@@ -177,7 +171,8 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
                 sendMsg = "PULM:STATe OFF";
             try
             {
-                return base.WriteString(sendMsg);
+                 return base.WriteString(sendMsg);
+              
             }
             catch (Exception ex)
             {
@@ -188,15 +183,16 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
         /// <summary>
         /// 设置脉冲信号带宽
         /// </summary>
-        /// <param name="width">带宽(范围:1us to 65.5 ms),单位:us</param>
+        /// <param name="width">带宽(范围:10ns – 60s-10ns),单位:us 复位10us</param> 
         /// <returns></returns>
         public override bool SetPulseWidth(double width)
         {
             //PULSe:WIDTh 200us
-            string sendMsg = "PULM:INTernal:WIDth " + width + "us";
+            string sendMsg = "PULM:INTernal:PWIDth " + width + "us";
             try
             {
-                return base.WriteString(sendMsg);
+                 return base.WriteString(sendMsg);
+           
             }
             catch (Exception ex)
             {
@@ -208,7 +204,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
         /// <summary>
         /// 设置脉冲周期（必须大于信号带宽）
         /// </summary>
-        /// <param name="period">带宽(范围:2us - 信号带宽，max:65.5 ms),单位:us</param>
+        /// <param name="period">带宽(范围:20ns – 60s),单位:us 复位20us</param>
         /// <returns></returns>
         public override bool SetPulsePeriod(double period)
         {
@@ -216,7 +212,8 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
             string sendMsg = "PULM:INTernal:PERiod " + period + "us";
             try
             {
-                return base.WriteString(sendMsg);
+                 return base.WriteString(sendMsg);
+                
             }
             catch (Exception ex)
             {
@@ -247,6 +244,7 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
                 throw (ex);
             }
         }
-    }
 
+        
+    }
 }

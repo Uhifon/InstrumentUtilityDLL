@@ -33,7 +33,7 @@ namespace InstrumentUtilityDotNet.NetworkAnalyzerManager
             string sendMsg = "*RST";
             try
             {
-                base.WriteString(sendMsg);
+                return base.WriteString(sendMsg);
                 return true;
             }
             catch (Exception ex)
@@ -67,7 +67,7 @@ namespace InstrumentUtilityDotNet.NetworkAnalyzerManager
             }
             try
             {
-                base.WriteString(sendMsg);
+                return base.WriteString(sendMsg);
                 return true;
             }
             catch (Exception ex)
@@ -102,7 +102,7 @@ namespace InstrumentUtilityDotNet.NetworkAnalyzerManager
             }
             try
             {
-                base.WriteString(sendMsg);
+                return base.WriteString(sendMsg);
                 return true;
             }
             catch (Exception ex)
@@ -137,7 +137,7 @@ namespace InstrumentUtilityDotNet.NetworkAnalyzerManager
             }
             try
             {
-                base.WriteString(sendMsg);
+                return base.WriteString(sendMsg);
                 return true;
             }
             catch (Exception ex)
@@ -172,7 +172,7 @@ namespace InstrumentUtilityDotNet.NetworkAnalyzerManager
             }
             try
             {
-                base.WriteString(sendMsg);
+                return base.WriteString(sendMsg);
                 return true;
             }
             catch (Exception ex)

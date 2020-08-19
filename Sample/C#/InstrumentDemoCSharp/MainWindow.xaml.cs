@@ -18,6 +18,7 @@ using InstrumentUtilityDotNet.PowerMeterManager;
 using InstrumentUtilityDotNet.SpectrumAnalyzerManager;
 using InstrumentUtilityDotNet.SignalSourceManager;
 using InstrumentUtilityDotNet.SynthesizeMeterManager;
+using System.Threading;
 
 namespace InstrumentDemoCsharp
 {
@@ -46,6 +47,7 @@ namespace InstrumentDemoCsharp
         public MainWindow()
         {
             InitializeComponent();
+            instrument = new InstrumentManager();
         }
 
         private void btnConnect_Click(object sender, RoutedEventArgs e)
@@ -193,6 +195,7 @@ namespace InstrumentDemoCsharp
             if (!isSpectrumMeterConnected)
                 return;
             spectrumAnalyzer.MarkPeak();
+            Thread.Sleep(1000);
             this.tbSpeMKA.Text = spectrumAnalyzer.GetMKA().ToString();
         }
         #endregion
@@ -251,7 +254,7 @@ namespace InstrumentDemoCsharp
         {
             if (this.cmbSigTriggerMode.SelectedIndex == 1)
             {
-                signalSource.SetPulse(true);
+                signalSource.SetPulseSwitch(true);
                 double width = Convert.ToDouble(this.tbSigPulseWidth.Text);
                 double period = Convert.ToDouble(this.tbSigPulsePeriod.Text);
                 signalSource.SetPulseWidth(width);
@@ -259,10 +262,45 @@ namespace InstrumentDemoCsharp
             }
             else
             {
-                signalSource.SetPulse(false);
+                signalSource.SetPulseSwitch(false);
             }   
         }
+        private void cmbSigTriggerMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!this.IsLoaded)
+                return;
+            if (cmbSigTriggerMode.SelectedIndex == 0)
+            {
+                tbSigPulseWidth.IsEnabled = false;
+                tbSigPulsePeriod.IsEnabled = false;
+            }
+            else
+            {
+                tbSigPulseWidth.IsEnabled = true;
+                tbSigPulsePeriod.IsEnabled = true;
+            }
 
+        }
+
+        private void cmbSigPluseSwitch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!isSignalSourceConnected)
+                return;
+             if(this.cmbSigPluseSwitch.SelectedIndex==0)
+                 signalSource.SetPulseSwitch(false);
+             else
+                signalSource.SetPulseSwitch(true);
+        }
+
+        private void cmbSigModulationSwitch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!isSignalSourceConnected)
+                return;
+            if (this.cmbSigModulationSwitch.SelectedIndex == 0)
+                signalSource.SetModulationSwitch(false);
+            else
+                signalSource.SetModulationSwitch(true);
+        }
 
         #endregion
 
@@ -324,6 +362,8 @@ namespace InstrumentDemoCsharp
             PowerUnit unit = (PowerUnit)this.cmbPowerMeterUnit.SelectedIndex;
             powerMeter.PowerUnitChange(unit);
         }
+
+
         #endregion
 
         #region 综测仪
@@ -403,8 +443,11 @@ namespace InstrumentDemoCsharp
         }
 
 
+
+
         #endregion
+ 
 
-
+      
     }
 }

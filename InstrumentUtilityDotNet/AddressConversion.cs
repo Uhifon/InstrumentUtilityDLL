@@ -33,7 +33,7 @@ namespace InstrumentUtilityDotNet
         /// <summary>
         /// VISA地址转IP
         /// </summary>
-        /// <param name="addr">TCPIP0::192.168.0.10::8000::SOKECT</param>
+        /// <param name="addr">TCPIP0::192.168.0.10::8000::SOCKET</param>
         /// <returns></returns>
         public static string[] VisaAddrToIP(string addr)
         {
@@ -66,7 +66,7 @@ namespace InstrumentUtilityDotNet
         /// <returns></returns>
         public static string TCPToVisaAddr(string ip, string port)
         {
-            return "TCPIP0::" + ip + "::" + port + "::SOKECT";
+            return "TCPIP0::" + ip + "::" + port + "::SOCKET";
         }
     }
 }

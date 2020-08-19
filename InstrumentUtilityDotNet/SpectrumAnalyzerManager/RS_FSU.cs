@@ -35,8 +35,7 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
             string sendMsg = "*RST";
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
@@ -55,8 +54,11 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
             string recvMsg = null;
             try
             {
-                recvMsg = base.WriteAndReadString("FREQ:CENT?");         
-                return Convert.ToDouble(recvMsg);
+                recvMsg = base.WriteAndReadString("FREQ:CENT?");
+                if (recvMsg != "")
+                    return Convert.ToDouble(recvMsg);
+                else
+                    return 0;
             }
             catch (Exception ex)
             {
@@ -71,11 +73,16 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
         /// <returns></returns>
         public override double GetMKA()
         {
-            string sendMsg = null;
+            string recvMsg = null;
             try
             {
-                sendMsg = base.WriteAndReadString("CALC:MARK:Y?");
-                return Convert.ToDouble(sendMsg);
+                recvMsg = base.WriteAndReadString("CALC:MARK:Y?");
+                double x = -999;
+                bool res = double.TryParse(recvMsg, out x);
+                if (res)
+                    return x;
+                else
+                    return -999;
             }
             catch (Exception ex)
             {
@@ -111,8 +118,7 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
 
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
@@ -133,14 +139,13 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
                 if (isAuto)
                 {
                     sendMsg = "BAND:AUTO ON";
-                    base.WriteString(sendMsg);
+                    return base.WriteString(sendMsg);
                 }
                 else
                 {
                     sendMsg = "BAND:AUTO OFF;BAND:RES " + value + "kHz;";
-                    base.WriteString(sendMsg);
+                    return base.WriteString(sendMsg);
                 }
-                return true;
             }
             catch (Exception ex)
             {
@@ -159,8 +164,7 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
             string sendMsg = "DISP:WIND:TRAC:Y:RLEV " + value + "dBm;";
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
@@ -177,8 +181,7 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
             string sendMsg = "CALC:MARK:MAX";
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
@@ -205,8 +208,7 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
             }
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
@@ -228,8 +230,7 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
             string sendMsg = "FREQ:SPAN " + value+ unit.ToString();
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
@@ -247,8 +248,7 @@ namespace InstrumentUtilityDotNet.SpectrumAnalyzerManager
             string sendMsg = " ";
             try
             {
-                base.WriteString(sendMsg);
-                return false;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {

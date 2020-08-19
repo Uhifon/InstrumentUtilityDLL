@@ -34,8 +34,7 @@ namespace InstrumentUtilityDotNet.SynthesizeMeterManager
             string sendMsg = "*RST";
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
@@ -69,8 +68,7 @@ namespace InstrumentUtilityDotNet.SynthesizeMeterManager
             }
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
@@ -88,8 +86,7 @@ namespace InstrumentUtilityDotNet.SynthesizeMeterManager
             string sendMsg = "RFG:AMPL " + value + "DBM;";
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
@@ -132,8 +129,7 @@ namespace InstrumentUtilityDotNet.SynthesizeMeterManager
                 sendMsg = "AFG1:FM:STAT ON";
             try
             {
-                base.WriteString(sendMsg);
-                return true;
+                return base.WriteString(sendMsg);
             }
             catch (Exception ex)
             {
