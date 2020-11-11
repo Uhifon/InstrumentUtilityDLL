@@ -157,6 +157,7 @@
                         <ComboBoxItem>RS_SMBV100A</ComboBoxItem>
                         <ComboBoxItem>Ceyear_AV1431</ComboBoxItem>
                         <ComboBoxItem>Ceyear_AV1487/144x/146x</ComboBoxItem>
+                        <ComboBoxItem>RS_SMB100B</ComboBoxItem>
                     </ComboBox>
 
                     <Label   Grid.Row="2" Grid.Column="0" Content="仪表ID："  VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
@@ -230,11 +231,11 @@
                         <ColumnDefinition Width="80"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Content="GPIB地址：" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
-                    <TextBox Name="tbPowerAddr" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="GPIB0::14::INSTR" VerticalAlignment="Center"  Margin="3"></TextBox>
-                    <Button Name="btnPowerOpen" Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="4" Content="打开" Margin="3" Click="btnPowerOpen_Click" Background="AliceBlue"/>
-                    <Button Name="btnPowerClose"  Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="5" Content="关闭" Margin="3" Click="btnPowerClose_Click" Background="AliceBlue"></Button>
-                    <Button Name="btnPowerReset"  Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="6" Content="复位" Margin="3" Click="btnPowerReset_Click" Background="AliceBlue"></Button>
+                    <Label Grid.Row="0" Grid.Column="0" Content="仪表地址：" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+                    <TextBox Name="tbPowerAddr" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Text="GPIB0::14::INSTR" VerticalAlignment="Center"  Margin="3,6,0,7"></TextBox>
+                    <Button Name="btnPowerOpen" Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="5" Content="打开" Margin="10,17,76,13" Click="btnPowerOpen_Click" Background="AliceBlue" Grid.ColumnSpan="2"/>
+                    <Button Name="btnPowerClose"  Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="6" Content="关闭" Margin="10,17,248,13" Click="btnPowerClose_Click" Background="AliceBlue" Grid.ColumnSpan="2"></Button>
+                    <Button Name="btnPowerReset"  Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="7" Content="复位" Margin="10,17,168,13" Click="btnPowerReset_Click" Background="AliceBlue"></Button>
 
                     <Label Grid.Row="1" Grid.Column="0" Content="仪表型号：" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
                     <ComboBox Name="cmbPowerType"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndex="0"   VerticalAlignment="Center"  Margin="3" Background="White">
@@ -289,16 +290,17 @@
                         <ColumnDefinition Width="80"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Content="GPIB地址：" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
-                    <TextBox Name="tbSynthesizeAddr" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="GPIB0::14::INSTR" VerticalAlignment="Center"  Margin="3"></TextBox>
-                    <Button Name="btnSynthesizeOpen" Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="4" Content="打开" Margin="3" Click="btnSynthesizeOpen_Click" Background="AliceBlue"/>
-                    <Button Name="btnSynthesizeClose"  Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="5" Content="关闭" Margin="3" Click="btnSynthesizeClose_Click" Background="AliceBlue"></Button>
-                    <Button Name="btnSynthesizeReset"  Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="6" Content="复位" Margin="3" Click="btnSynthesizeReset_Click" Background="AliceBlue"></Button>
+                    <Label Grid.Row="0" Grid.Column="0" Content="仪表地址：" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
+                    <TextBox Name="tbSynthesizeAddr" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Text="GPIB0::14::INSTR" VerticalAlignment="Center"  Margin="3,6,3,7"></TextBox>
+                    <Button Name="btnSynthesizeOpen" Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="5" Content="打开" Margin="10,20,76,10" Click="btnSynthesizeOpen_Click" Background="AliceBlue" Grid.ColumnSpan="2"/>
+                    <Button Name="btnSynthesizeClose"  Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="6" Content="关闭" Margin="10,20,248,10" Click="btnSynthesizeClose_Click" Background="AliceBlue" Grid.ColumnSpan="2"></Button>
+                    <Button Name="btnSynthesizeReset"  Height="40"  Grid.Row="0"  Grid.RowSpan="2" Grid.Column="7" Content="复位" Margin="10,20,168,10" Click="btnSynthesizeReset_Click" Background="AliceBlue"></Button>
 
                     <Label Grid.Row="1" Grid.Column="0" Content="仪表型号：" VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
                     <ComboBox Name="cmbSynthesizeType"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" SelectedIndex="0"   VerticalAlignment="Center"  Margin="3" Background="White">
                         <ComboBoxItem>Aglient_8920</ComboBoxItem>
                         <ComboBoxItem>Ceyear_AV4957</ComboBoxItem>
+                        <ComboBoxItem>RS_CMA180</ComboBoxItem>
                     </ComboBox>
 
                     <Label   Grid.Row="2" Grid.Column="0" Content="仪表ID："  VerticalAlignment="Center" HorizontalAlignment="Right"></Label>
