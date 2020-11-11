@@ -85,6 +85,7 @@
     <Compile Include="AddressConversion.cs" />
     <Compile Include="SignalSourceManager\AV1431.cs" />
     <Compile Include="SpectrumAnalyzerManager\Ceyear_4024D.cs" />
+    <Compile Include="SynthesizeMeterManager\RS_CMA180.cs" />
     <Compile Include="SynthesizeMeterManager\Aglient_8920.cs" />
     <Compile Include="SynthesizeMeterManager\Ceyear_AV4957.cs" />
     <Compile Include="SynthesizeMeterManager\SynthesizeMeter.cs" />

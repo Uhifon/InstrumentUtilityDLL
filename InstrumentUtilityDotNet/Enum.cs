@@ -83,7 +83,8 @@ namespace InstrumentUtilityDotNet
         RS_SMA100A,
         RS_SMBV100A,
         Ceyear_AV1431,
-        Ceyear_AV146X
+        Ceyear_AV146X,
+        RS_SMB100B,
     }
 
     /// <summary>
@@ -100,7 +101,8 @@ namespace InstrumentUtilityDotNet
     public enum SynthesizeMeterType
     {
         Aglient_8920,
-        Ceyear_AV4957
+        Ceyear_AV4957,
+        RS_CMA180
     }
 
 

@@ -27,6 +27,8 @@ namespace InstrumentUtilityDotNet.SynthesizeMeterManager
                     return new Aglient_8920();
                 case SynthesizeMeterType.Ceyear_AV4957:
                     return new Ceyear_AV4957();
+                case SynthesizeMeterType.RS_CMA180:
+                    return new RS_CMA180();
                 default:
                     return null;
             }

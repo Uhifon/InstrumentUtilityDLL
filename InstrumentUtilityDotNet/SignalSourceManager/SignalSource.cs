@@ -39,6 +39,8 @@ namespace InstrumentUtilityDotNet.SignalSourceManager
                     return new AV1431();
                 case SignalSourceType.Ceyear_AV146X:
                     return new AV1431();
+                case SignalSourceType.RS_SMB100B:
+                    return new HP_8360();
                 default:
                     return null;
             }
