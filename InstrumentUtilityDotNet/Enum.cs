@@ -56,7 +56,12 @@ namespace InstrumentUtilityDotNet
         /// <summary>
         /// 综测仪
         /// </summary>
-        SynthesizeMeter
+        SynthesizeMeter,
+        /// <summary>
+        /// 网络分析仪
+        /// </summary>
+        NetworkAnalyzer
+
     }
 
     /// <summary>
@@ -111,7 +116,9 @@ namespace InstrumentUtilityDotNet
     /// </summary>
     public enum NetworkAnalyzerType
     {
-        RS_ZNB
+        RS_ZNB,
+        Aglient_E5071C,
+        Aglient_E506X
     }
 
     #endregion

@@ -23,6 +23,10 @@ namespace InstrumentUtilityDotNet.NetworkAnalyzerManager
             {
                 case NetworkAnalyzerType.RS_ZNB:
                    return new RS_ZNB();
+                case NetworkAnalyzerType.Aglient_E5071C:
+                    return new RS_ZNB();
+                case NetworkAnalyzerType.Aglient_E506X:
+                    return new RS_ZNB();
                 default:
                     return null;
                

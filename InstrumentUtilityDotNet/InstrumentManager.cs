@@ -71,7 +71,7 @@ namespace InstrumentUtilityDotNet
                 string m_Description = string.Empty;
                 m_IO488 = new FormattedIO488Class();
                 // 初始化m_IOName指定的接口
-                m_IO488.IO = (IMessage)m_IOResourceManager.Open(m_IOName, AccessMode.NO_LOCK,3000); //TCPIP0::172.17.200.11::5000::SOCKET
+                m_IO488.IO = (IMessage)m_IOResourceManager.Open(m_IOName, AccessMode.NO_LOCK,5000); //TCPIP0::172.17.200.11::5025::SOCKET   TCPIP0::169.254.190.65::inst0::INSTR
                 return true;
             }
             catch(Exception ex)
@@ -88,7 +88,7 @@ namespace InstrumentUtilityDotNet
         {
             try
             {
-                if (m_IO488 != null)
+                if (m_IO488 != null&& m_IO488.IO!=null)
                 {
                     m_IO488.IO.Close();
                     m_IO488 = null;
@@ -125,7 +125,7 @@ namespace InstrumentUtilityDotNet
                     m_IO488.WriteString(m_Command, true);
                             return true;
                 }
-                else if (m_IO488 != null)
+                else if (m_IO488 != null && m_IO488.IO!=null)
                 {
                     n = m_IO488.IO.WriteString(m_Command);
                     if (n == m_Command.Length)
@@ -160,7 +160,7 @@ namespace InstrumentUtilityDotNet
                 {
                     if (commMode == InstrumentCommunicationMode.TCP)
                     {
-                        while (true)
+                        while (m_IO488.IO!=null)
                         {
                             string str = m_IO488.IO.ReadString(1);  //单字节获取
                             if (str == "\n")
